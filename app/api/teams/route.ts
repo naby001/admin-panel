@@ -3,14 +3,13 @@ import connectToDatabase from '../../../lib/mongodb';
 import Team from '../../../models/Team';
 import Event from '../../../models/Event';
 import User from '../../../models/User';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../../lib/auth';
+import { getSession } from '../../../lib/session';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
   try {
     // Check authentication
-    const session = await getServerSession(authOptions);
+    const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
