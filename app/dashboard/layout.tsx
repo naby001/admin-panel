@@ -1,9 +1,10 @@
+import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import { getSession } from '../../lib/session';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 import DashboardLayoutWrapper from '../../components/DashboardLayoutWrapper';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
 
   // Redirect to login if not authenticated
   if (!session) {

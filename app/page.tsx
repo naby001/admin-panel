@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
-import { getSession } from '@/lib/session';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import Image from "next/image";
 
 export default async function Home() {
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
   
   // Redirect to dashboard if authenticated
   if (session) {
