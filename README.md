@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# College Fest Admin Panel
+
+A Next.js 14 admin panel for managing college fest events and team registrations.
+
+## Features
+
+- **Authentication**: Secure login with NextAuth.js (Google, GitHub, or credentials)
+- **Dashboard**: Overview of events and registrations
+- **Events Management**: View all events with their details
+- **Teams Management**: View, search, and filter team registrations
+- **Responsive Design**: Works on all devices with Material UI and Tailwind CSS
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 (App Router), React, Material UI
+- **Backend**: Next.js API routes
+- **Database**: MongoDB Atlas with Mongoose
+- **Authentication**: NextAuth.js
+- **Styling**: Material UI with dark theme, Tailwind CSS for responsiveness
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18.17 or later
+- MongoDB Atlas account
+- (Optional) GitHub and Google OAuth credentials for authentication
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd admin-panel
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Fill in your MongoDB connection string and other required variables
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```
+# MongoDB Connection
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
+
+# NextAuth.js
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
+
+# GitHub OAuth (optional)
+GITHUB_ID=your-github-client-id
+GITHUB_SECRET=your-github-client-secret
+
+# Google OAuth (optional)
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Admin Access
+ADMIN_EMAILS=admin1@example.com,admin2@example.com
+
+# For development/testing with credentials provider
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=securepassword
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application uses two main collections:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Events Collection**:
+   - `title`: Event name
+   - `description`: Event details
+   - `date`: Event date
+   - `venue`: Event location
+   - `maxTeamSize`: Maximum team size
+   - `minTeamSize`: Minimum team size
+   - `registrationDeadline`: Last date for registration
 
-## Learn More
+2. **Teams Collection**:
+   - `name`: Team name
+   - `event`: Reference to event ID
+   - `leader`: Team leader details (name, email, phone)
+   - `members`: Array of team members (name, email, phone)
+   - `registrationDate`: Date of registration
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is ready to be deployed to Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push your code to a GitHub repository
+2. Import the project to Vercel
+3. Set up the environment variables in the Vercel dashboard
+4. Deploy!
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
