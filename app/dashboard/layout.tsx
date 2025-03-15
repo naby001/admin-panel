@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '../api/auth/authOptions';
 import DashboardLayoutWrapper from '../../components/DashboardLayoutWrapper';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
