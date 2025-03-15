@@ -4,7 +4,7 @@ import Team from '../../../models/Team';
 import Event from '../../../models/Event';
 import User from '../../../models/User';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '../../../lib/auth';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
