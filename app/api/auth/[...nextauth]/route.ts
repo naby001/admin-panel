@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+// Import from the centralized auth options in lib/auth
 import { authOptions } from '../../../../lib/auth';
 
 // Define the handler
